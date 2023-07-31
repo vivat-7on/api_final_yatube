@@ -22,7 +22,7 @@ class PostViewSet(viewsets.ModelViewSet):
     pagination_class = LimitOffsetPagination
 
     def get_queryset(self):
-        queryset = Post.objects.all().select_related('author')
+        queryset = Post.objects.select_related('author')
         group_id = self.request.query_params.get('group_id', None)
         if group_id is not None:
             queryset = queryset.filter(group_id=group_id)
@@ -57,7 +57,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class FollowViewSet(viewsets.ModelViewSet):
-    queryset = Follow.objects.all()
     serializer_class = FollowSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = (DjangoFilterBackend,)
@@ -100,7 +99,7 @@ class FollowViewSet(viewsets.ModelViewSet):
         )
 
     def get_queryset(self):
-        queryset = Follow.objects.filter(user=self.request.user)
+        queryset = self.request.user.follower.all()
         search = self.request.query_params.get('search')
         if search:
             queryset = queryset.filter(following__username__icontains=search)
