@@ -49,9 +49,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user, post=post)
 
     def get_queryset(self):
-        post_id = self.kwargs.get('post_id')
         queryset = Comment.objects.filter(
-            post=post_id
+            post=self.kwargs.get('post_id')
         ).select_related('author')
         return queryset
 
@@ -66,7 +65,6 @@ class FollowViewSet(viewsets.ModelViewSet):
         following_username = self.request.data.get('following')
         if not following_username:
             raise ValidationError({"following": ["Обязательное поле."]})
-
         try:
             following_user = User.objects.get(username=following_username)
         except User.DoesNotExist:
