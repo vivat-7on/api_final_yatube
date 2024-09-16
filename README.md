@@ -2,7 +2,14 @@
 
 В данном репозитории представлен проект, реализующий функциональность блога с возможностью создания постов, комментариев
 и подписок на пользователей и группы.
+## Стек технологий
 
+![Django](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white)
+![Django REST Framework](https://img.shields.io/badge/Django_REST_Framework-FF3C2A?logo=django&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?logo=json-web-tokens&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?logo=nginx&logoColor=white)
+![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?logo=gunicorn&logoColor=white)
 ## Установка
 
 1. Склонируйте данный репозиторий на свой локальный компьютер:
@@ -63,7 +70,3 @@ endpoints.
 curl -H "Authorization: Bearer ваш-токен" http://localhost:8000/api/v1/защищенный-ресурс/
 ```
 
-## Автор
-
-- яндекс.практикум
-- Валерчик
